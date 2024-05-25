@@ -38,7 +38,7 @@ if uploaded_file is not None:
     st.write("")
     
     # Slider for selecting K value
-    k = st.slider('Select number of colors (K)', min_value=2, max_value=64, value=16)
+    k = st.slider('Select number of colors (K)', min_value=2, max_value=64, value=60)
     
     # Compress image button
     if st.button('Compress Image'):
