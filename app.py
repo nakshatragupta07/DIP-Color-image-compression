@@ -1,4 +1,3 @@
-pip install streamlit opencv-python-headless pillow
 
 import streamlit as st
 import cv2
