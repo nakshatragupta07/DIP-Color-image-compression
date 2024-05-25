@@ -1,0 +1,4 @@
+%%writefile requirements.txt
+streamlit
+opencv-python-headless
+pillow
