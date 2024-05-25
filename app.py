@@ -1,4 +1,4 @@
-
+%%writefile app.py
 import streamlit as st
 import cv2
 import numpy as np
@@ -29,13 +29,13 @@ st.title('Color Image Compression')
 st.write('Upload an image and choose the number of colors (K) to compress the image.')
 
 # Image uploader
-uploaded_file = st.file_uploader("Choose an image...", type="jpg")
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 if uploaded_file is not None:
     # Convert the file to an OpenCV image
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-    image = cv2.imdecode(file_bytes, 1)
+    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
     
-    st.image(image, caption='Uploaded Image', use_column_width=True)
+    st.image(image, channels="RGB", caption='Uploaded Image', use_column_width=True)
     st.write("")
     
     # Slider for selecting K value
@@ -44,7 +44,7 @@ if uploaded_file is not None:
     # Compress image button
     if st.button('Compress Image'):
         compressed_image = compress_image(image, k)
-        st.image(compressed_image, caption='Compressed Image', use_column_width=True)
+        st.image(compressed_image, channels="RGB", caption='Compressed Image', use_column_width=True)
         
         # Option to download the compressed image
         im_pil = Image.fromarray(compressed_image)
